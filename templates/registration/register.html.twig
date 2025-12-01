@@ -1,0 +1,76 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}
+	Famms | Créer votre compte
+{% endblock %}
+
+{% block body %}
+
+	{% set isInvalidFirstName = not registrationForm.firstName.vars.valid %}
+	{% set isInvalidLastName = not registrationForm.lastName.vars.valid %}
+	{% set isInvalidEmail = not registrationForm.email.vars.valid %}
+	{% set isInvalidAddress = not registrationForm.address.vars.valid %}
+	{% set isInvalidCity = not registrationForm.city.vars.valid %}
+	{% set isInvalidZipcode = not registrationForm.zipcode.vars.valid %}
+	{% set isInvalidPassword = not registrationForm.password.vars.valid %}
+
+	<section class="why_section layout_padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2">
+					<div class="full">
+						{{ form_start(registrationForm) }}
+						{{ form_row(registrationForm.firstName, {
+                            attr: {
+                                class: isInvalidFirstName ? 'input-error' : ''
+                            }
+                        }) }}
+						{{ form_row(registrationForm.lastName, {
+                            attr: {
+                                class: isInvalidLastName ? 'input-error' : ''
+                            }
+                        }) }}
+						{{ form_row(registrationForm.email, {
+                            attr: {
+                                class: isInvalidEmail ? 'input-error' : ''
+                            }
+                        }) }}
+						{{ form_row(registrationForm.address, {
+                            attr: {
+                                class: isInvalidAddress ? 'input-error' : ''
+                            }
+                        }) }}
+						{{ form_row(registrationForm.city, {
+                            attr: {
+                                class: isInvalidCity ? 'input-error' : ''
+                            }
+                        }) }}
+						{{ form_row(registrationForm.zipcode, {
+                            attr: {
+                                class: isInvalidZipcode ? 'input-error' : ''
+                            }
+                        }) }}
+						{{ form_row(registrationForm.phone) }}
+						{{ form_row(registrationForm.password.first, {
+                            attr: {
+                                class: isInvalidPassword ? 'input-error' : ''
+                            }
+
+                        }) }}
+                        {{ form_row(registrationForm.password.second, {
+                            attr: {
+                                class: isInvalidPassword ? 'input-error' : ''
+                            }
+
+                        }) }}
+						{{ form_row(registrationForm.agreeTerms) }}
+
+						<input type="submit" value="Continuer"/>
+						{{ form_end(registrationForm) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

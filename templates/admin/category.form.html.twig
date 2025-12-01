@@ -1,0 +1,109 @@
+{% extends 'layouts/base.admin.html.twig' %}
+
+{% block title %}
+	Famms | BackOffice | Ajouter une catégorie
+{% endblock %}
+
+{% block body %}
+
+	<section class="section is-title-bar">
+		<div class="level">
+			<div class="level-left">
+				<div class="level-item">
+					<ul>
+						<li>BackOffice</li>
+						<li>Catégories de produits</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	{# <section class="section is-main-section"> #}
+
+	{% for label, messages in app.flashes(['success', 'warning']) %}
+		{% for message in messages %}
+			<div class="notification is-{{ label }}">
+				<button class="delete"></button>
+				{{ message }}
+			</div>
+		{% endfor %}
+	{% endfor %}
+
+	{% set isInvalidName = not formCategory.name.vars.valid %}
+
+	{# </section> #}
+	<section class="section is-main-section">
+		<div class="card">
+			<header class="card-header">
+				<p class="card-header-title">
+					<span class="icon">
+						<span class="mdi mdi-shopping-outline"></span>
+					</span>
+					{% if categoryId is not null %}
+						Modifier la
+					{% else %}
+						Ajouter une
+					{% endif %}
+					catégorie
+				</p>
+			</header>
+			<div class="card-content">
+				{{ form_start(formCategory) }}
+				<div class="field is-horizontal">
+					<div class="field-label is-normal">
+						<label class="label">Titre</label>
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<div class="control">
+								{# is-danger #}
+								{# <input class="input " type="text" placeholder="e.g. Partnership opportunity"/> #}
+							{{ form_row(formCategory.name, {
+								attr: {
+									class: isInvalidName ? 'input input-error' : 'input'
+								}
+							}) }}
+						</div>
+							{# <p class="help is-danger">This field is required</p> #}
+						</div>
+					</div>
+				</div>
+
+				<div class="field is-horizontal">
+					<div class="field-label is-normal">
+						<label class="label">Description</label>
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<div class="control">
+								{{ form_row(formCategory.description) }}
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr/>
+				<div class="field is-horizontal">
+					<div
+						class="field-label"><!-- Left empty for spacing -->
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<div class="field is-grouped">
+								<div class="control">
+									<button type="submit" class="button is-primary">
+										<span>
+											Enregistrer
+											{% if categoryId is not null %}
+												les modifications
+											{% endif %}
+										</span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{{ form_end(formCategory) }}</div>
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,189 @@
+{% extends 'layouts/base.admin.html.twig' %}
+
+{% block title %}
+	Famms | BackOffice | Ajouter un article
+{% endblock %}
+
+{% block body %}
+
+	<section class="section is-title-bar">
+		<div class="level">
+			<div class="level-left">
+				<div class="level-item">
+					<ul>
+						<li>BackOffice</li>
+						<li>Boutique</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section is-main-section">
+		<div class="card">
+			<header class="card-header">
+				<p class="card-header-title">
+					<span class="icon">
+						<span class="mdi mdi-shopping-outline"></span>
+					</span>
+
+					{% if productId is not null %}
+						Modifier
+					{% else %}
+						Enregistrer
+					{% endif %}
+					un article
+				</p>
+			</header>
+			<div class="card-content">
+				{{ form_start(formProduct) }}
+				<div class="field is-horizontal">
+					<div class="field-label is-normal">
+						<label class="label">Titre / Référence</label>
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<p class="control is-expanded">
+								{{ form_row(formProduct.name) }}
+							</p>
+						</div>
+						<div class="field">
+							<p class="control is-expanded">
+								{{ form_row(formProduct.reference) }}
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="field is-horizontal">
+					<div class="field-label is-normal">
+						<label class="label">Catégorie</label>
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<div class="select is-fullwidth">
+								{{ form_row(formProduct.category) }}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="field is-horizontal">
+					<div class="field-label is-normal">
+						<label class="label">Description</label>
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<div class="control">
+								{{ form_row(formProduct.description) }}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="field is-horizontal">
+					<div class="field-label is-normal">
+						<label class="label">Taille / Couleur</label>
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<div class="select is-fullwidth">
+								{{ form_row(formProduct.size) }}
+							</div>
+						</div>
+						<div class="field">
+							<p class="control is-expanded">
+								{{ form_row(formProduct.color) }}
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="field is-horizontal">
+					<div class="field-label is-normal">
+						<label class="label">Genre / Prix</label>
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<div class="select is-fullwidth">
+								{{ form_row(formProduct.gender) }}
+							</div>
+						</div>
+						<div class="field">
+							<p class="control is-expanded">
+								{{ form_row(formProduct.price) }}
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="field is-horizontal">
+					<div class="field-label is-normal">
+						<label class="label">Stock</label>
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<p class="control is-expanded">
+								{{ form_row(formProduct.stock) }}
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="field is-horizontal">
+					<div class="field-label is-normal">
+						<label class="label">Photo</label>
+					</div>
+					<div class="field-body">
+
+						<div class="field">
+							<div class="file has-name">
+								<label class="file-label">
+									{{ form_row(formProduct.picture) }}
+									<span class="file-cta">
+										<span class="mdi mdi-upload pr-3"></span>
+										<span class="file-label">
+											Choisir un fichier
+										</span>
+									</span>
+									<span class="file-name">
+										Screen Shot 2017-07-29 at 15.54.25.png
+									</span>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% if pictureFile is not null %}
+					<div class="field is-horizontal">
+						<div class="field-label is-normal">
+							<label class="label">Photo actuelle</label>
+						</div>
+						<div class="field-body">
+							<div class="field">
+								<img src="{{ asset('uploads/photos/' ~ pictureFile) }}" alt="{{ pictureFile }}" class="product__picture">
+							</div>
+						</div>
+					</div>
+				{% endif %}
+
+				<hr/>
+				<div class="field is-horizontal">
+					<div
+						class="field-label"><!-- Left empty for spacing -->
+					</div>
+					<div class="field-body">
+						<div class="field">
+							<div class="field is-grouped">
+								<div class="control">
+									<button type="submit" class="button is-primary">
+										<span>Enregistrer
+											{% if productId is not null %}les modifications
+											{% endif %}
+										</span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{{ form_end(formProduct) }}
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

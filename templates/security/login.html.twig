@@ -1,0 +1,58 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Identifiez-vous
+{% endblock %}
+
+{% block body %}
+
+	<section class="inner_page_head">
+		<div class="container_fuild">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="full">
+						<h3>Identifiez-vous</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end inner page section -->
+	<!-- why section -->
+	<section class="why_section layout_padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2">
+					<div class="full">
+						<form method="post">
+							{% if error %}
+								<div class="bg-danger text-center text-white py-3">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+							{% endif %}
+
+							<h1 class="h3 mb-3">Identifiez-vous</h1>
+							<label for="username">Email</label>
+							<input type="email" value="{{ last_username }}" name="_username" id="username" autocomplete="email" required autofocus>
+							<label for="password">Mot de passe</label>
+							<input type="password" name="_password" id="password" autocomplete="current-password" required>
+							<input
+							type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+
+							{#
+                                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                See https://symfony.com/doc/current/security/remember_me.html
+                    
+                                <div class="checkbox mb-3">
+                                    <input type="checkbox" name="_remember_me" id="_remember_me">
+                                    <label for="_remember_me">Remember me</label>
+                                </div>
+                            #}
+
+							<input type="submit" value="Continuer"/>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+{% endblock %}
